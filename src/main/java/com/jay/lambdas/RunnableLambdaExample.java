@@ -14,10 +14,9 @@ public class RunnableLambdaExample {
 
     new Thread(runnable).start();
 
-    // java8 Lambda ==> 實作一個 FunctionalInterface
-    // single abstract method(SAM)
+    // java8 Lambda ==> 實作一個 FunctionalInterface 的 single abstract method(SAM)
     // () -> {}
-    Runnable runnableLambda = () ->{
+    Runnable runnableLambda = () -> {
       System.out.println("Inside runnableLambda");
     };
 
