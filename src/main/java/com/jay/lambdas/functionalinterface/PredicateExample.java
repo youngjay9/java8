@@ -19,11 +19,17 @@ public class PredicateExample {
     System.out.println(predicate.test(9));
 
     // java8
-    Predicate<Integer> p = (integer -> {
+    Predicate<Integer> p_even = (integer) -> {
       return integer % 2 == 0;
-    });
+    };
 
+    Predicate<Integer> p_odd = (i) -> {
+      return i % 2 != 0;
+    };
 
-    System.out.println(p.test(4));
+    p_even.and(p_odd).test(6);
+
+    System.out.println(p_even.and(p_odd).test(6));
+
   }
 }
