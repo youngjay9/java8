@@ -22,6 +22,6 @@ public class ComparatorLambdaEzample {
       return o1.compareTo(o2);
     };
 
-    System.out.println("Result comparatorLambda:" + comparatorLambda.compare(6, 7));
+    System.out.println("Result comparatorLambda:" + comparatorLambda.compare(7, 6));
   }
 }
