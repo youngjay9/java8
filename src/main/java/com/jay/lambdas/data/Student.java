@@ -92,7 +92,6 @@ public class Student {
   }
 
 
-
   public List<String> getActivities() {
     return this.activities;
   }
@@ -104,6 +103,18 @@ public class Student {
   public void printListOfActivities() {
 
     System.out.println("List of Activities are : " + this.activities);
+  }
+
+  public int compareGradLevel(Student anotherStudent) {
+    if (this == null) {
+      return -1;
+    }
+    if (this.getGradeLevel() > anotherStudent.getGradeLevel()) {
+      return 1;
+    } else if (this.getGradeLevel() < anotherStudent.getGradeLevel()) {
+      return -1;
+    }
+    return 0;
   }
 
   @Override

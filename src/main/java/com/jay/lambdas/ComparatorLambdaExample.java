@@ -1,8 +1,9 @@
 package com.jay.lambdas;
 
+import com.jay.lambdas.data.Student;
 import java.util.Comparator;
 
-public class ComparatorLambdaEzample {
+public class ComparatorLambdaExample {
 
   public static void main(String[] args) {
     // prior java8
@@ -23,5 +24,6 @@ public class ComparatorLambdaEzample {
     };
 
     System.out.println("Result comparatorLambda:" + comparatorLambda.compare(7, 6));
+
   }
 }

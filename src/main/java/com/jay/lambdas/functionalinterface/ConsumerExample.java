@@ -7,6 +7,14 @@ import java.util.function.Consumer;
 
 public class ConsumerExample {
 
+  static Consumer<Student> consumer = new Consumer<Student>() {
+    @Override
+    public void accept(Student student) {
+      System.out.println(student.getActivities());
+    }
+  };
+
+
   static Consumer<String> c1 = (s) -> System.out.println(s.toUpperCase());
   static Consumer<Student> c2 = (student) -> System.out.println(student.getName());
   static Consumer<Student> c3 = (student) -> System.out.println(student.getName());
@@ -39,6 +47,8 @@ public class ConsumerExample {
 
 //    printStudentNameAndActivities();
 
-    printStudentNameAndActivitiesUsingCondition();
+//    printStudentNameAndActivitiesUsingCondition();
+
+
   }
 }
