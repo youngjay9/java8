@@ -8,11 +8,14 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MethodReferenceExample {
 
   /**
-   * Lambda: (args) -> ClassName.staticMethod(args) MethodReference: ClassName::staticMethod
+   * Lambda: (args) -> ClassName.staticMethod(args)
+   * MethodReference: ClassName::staticMethod
    */
   public static void demo1() {
     ToIntFunction<String> lambda = (String s) -> Integer.parseInt(s);
@@ -23,8 +26,7 @@ public class MethodReferenceExample {
   }
 
   /**
-   * Lambda: (arg0, rest) -> arg0.instanceMethod(rest)
-   * arg0 is of type ClassName
+   * Lambda: (arg0, rest) -> arg0.instanceMethod(rest) arg0 is of type ClassName
    * MethodReference: ClassName::instanceMethod
    */
   public static void demo2() {
@@ -36,15 +38,26 @@ public class MethodReferenceExample {
         .println("methodReference:" + methodReference.test(Arrays.asList("a", "b", "c"), "c"));
   }
 
+  public boolean startsWithNumber(String str) {
+    Pattern pattern = Pattern.compile("^[0-9]{1,}");
+    Matcher matcher = pattern.matcher(str);
+
+    return matcher.find();
+
+  }
+
   /**
    * Lambda: (args) -> expr.instanceMethod
    * MethodReference: expr::instanceMethod
    */
-  public static void demo3(){
+  public void demo3() {
+    Predicate<String> lambda = (String str) -> this.startsWithNumber(str);
+    System.out.println("lambda: "+lambda.test("Abs"));
 
+    Predicate<String> methodReference = this::startsWithNumber;
+    System.out.println("methodReference: " + methodReference.test("3bba"));
 
   }
-
 
 
   public static void main(String[] args) {
@@ -52,5 +65,8 @@ public class MethodReferenceExample {
     demo1();
 
     demo2();
+
+    MethodReferenceExample methodReferenceExample = new MethodReferenceExample();
+    methodReferenceExample.demo3();
   }
 }
