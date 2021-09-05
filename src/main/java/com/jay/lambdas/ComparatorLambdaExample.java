@@ -19,9 +19,7 @@ public class ComparatorLambdaExample {
     System.out.println("Result comparator:" + comparator.compare(5, 6));
 
     // java8
-    Comparator<Integer> comparatorLambda = (Integer o1, Integer o2) -> {
-      return o1.compareTo(o2);
-    };
+    Comparator<Integer> comparatorLambda = (Integer o1, Integer o2) -> o1.compareTo(o2);
 
     System.out.println("Result comparatorLambda:" + comparatorLambda.compare(7, 6));
 

@@ -11,10 +11,13 @@ import java.util.function.ToIntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Comparator.comparing;
+
 public class MethodReferenceExample {
 
   /**
-   * Lambda: (args) -> ClassName.staticMethod(args) MethodReference: ClassName::staticMethod
+   * Lambda: (args) -> ClassName.staticMethod(args)
+   * MethodReference: ClassName::staticMethod
    */
   public static void demo1() {
     ToIntFunction<String> lambda = (String s) -> Integer.parseInt(s);
@@ -25,8 +28,8 @@ public class MethodReferenceExample {
   }
 
   /**
-   * Lambda: (arg0, rest) -> arg0.instanceMethod(rest) arg0 is of type ClassName MethodReference:
-   * ClassName::instanceMethod
+   * Lambda: (arg0, rest) -> arg0.instanceMethod(rest) arg0 is of type ClassName
+   * MethodReference: ClassName::instanceMethod
    */
   public static void demo2() {
     BiPredicate<List<String>, String> lambda = (list, element) -> list.contains(element);
@@ -46,7 +49,8 @@ public class MethodReferenceExample {
   }
 
   /**
-   * Lambda: (args) -> expr.instanceMethod MethodReference: expr::instanceMethod
+   * Lambda: (args) -> expr.instanceMethod(args)
+   * MethodReference: expr::instanceMethod
    */
   public void demo3() {
     Predicate<String> lambda = (String str) -> this.startsWithNumber(str);
@@ -61,13 +65,11 @@ public class MethodReferenceExample {
    * comparator 使用 MethodReference 呈現,語法較簡潔
    */
   public void demo4() {
-    List<Student> students = StudentDataBase.getAllStudents();
+    List<Student> studentsOne = StudentDataBase.getAllStudents();
+    studentsOne.sort(comparing((Student s) -> s.getGradeLevel()));
 
-    Comparator<Student> comparatorLambda = Comparator.comparing((Student s) -> s.getGradeLevel());
-    students.sort(comparatorLambda);
-
-    Comparator<Student> comparatorMethodReference = Comparator.comparing(Student::getGradeLevel);
-    students.sort(comparatorMethodReference);
+    List<Student> studentsTwo = StudentDataBase.getAllStudents();
+    studentsTwo.sort(comparing(Student::getGradeLevel));
 
   }
 
